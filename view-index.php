@@ -1,4 +1,5 @@
 <html><head>
+<?php styling_info('index'); ?>
 <title>Stoic Hours: <?php echo big_date_form($jldate); ?></title>
 </head><body>
 
@@ -25,18 +26,24 @@ stoic_hours_link_win_new(array('jldate' => $jldate,'view' => 'lauds'));
 
 
 <hr/>
+
+<?php if ( $jldate > ( $jld_prima + 0.5 ) ) { ?>
 Previous day: [<?php
 stoic_hours_link_win_same(array('jldate' => $jl_yester));
 echo big_date_form($jl_yester);
 stoic_hours_link_end();
 ?>]
+<br/>
+<?php } ?>
 
+<?php if ( $jldate < ( $jld_termi - 0.5 ) ) { ?>
 <br/>
 Next day: [<?php
 stoic_hours_link_win_same(array('jldate' => $jl_tomorr));
 echo big_date_form($jl_tomorr);
 stoic_hours_link_end();
 ?>]
+<?php } ?>
 
 
 </body></html>
