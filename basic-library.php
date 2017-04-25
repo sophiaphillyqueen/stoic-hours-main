@@ -126,25 +126,42 @@ function stoic_hour_cycle_res ( $resfile, $year, $month, $dayom, $extra )
   
   $jlelaps = (int)(($jldate - $cyclejulor) + 0.2);
   $jlcyst = ( $jlelaps % $cyclesize );
+  if ( array_key_exists('chosen-in-ray',$extra) ) { $jlcyst = $extra['chosen-in-ray']; }
   if ( $jlcyst > ( $ressiz - 0.5 ) ) { return true; }
   
   if ( the_stoic__xml_lacks_a($xmlrs,'title') ) { return true; }
-  if ( the_stoic__xml_lacks_a($xmlrs->item[$jlcyst],'title') ) { return true; }
+  //if ( the_stoic__xml_lacks_a($xmlrs->item[$jlcyst],'title') ) { return true; }
   if ( the_stoic__xml_lacks_a($xmlrs->item[$jlcyst],'content') ) { return true; }
+  
+  ?><div class = "reading_part_frame"><?php
   
   echo "<h3>";
   echo the_stoic_in_xml($xmlrs->title);
-  echo " -- ";
-  echo the_stoic_in_xml($xmlrs->item[$jlcyst]->title) . "</h3>\n";
-  
+  if ( the_stoic__xml_has_a($xmlrs->item[$jlcyst],'title') )
+  {
+    echo " -- ";
+    echo the_stoic_in_xml($xmlrs->item[$jlcyst]->title);
+  }
+  echo "</h3>\n";
   
   $xmlcont = $xmlrs->item[$jlcyst]->content;
   foreach ( $xmlcont->children() as $xmlitem )
   {
     $xmltyp = $xmlitem->getName();
+    
     if ( strcmp($xmltyp,'p') == 0 )
     {
       echo "<p>\n" . the_stoic_in_xml($xmlitem) . "\n<p/>\n";
+    }
+    
+    if ( strcmp($xmltyp,'instruct') == 0 )
+    {
+      echo "<div class = \"instruction_text\">\n" . the_stoic_in_xml($xmlitem) . "\n</div>\n";
+    }
+    
+    if ( strcmp($xmltyp,'raw') == 0 )
+    {
+      echo "\n" . the_stoic_in_xml($xmlitem) . "\n";
     }
   }
   
@@ -156,8 +173,31 @@ function stoic_hour_cycle_res ( $resfile, $year, $month, $dayom, $extra )
     echo "</div>\n";
   }
   
+  ?></div><?php
+  
   
   return false;
+}
+
+
+function return_to_index_view ( )
+{
+  $jldate = $GLOBALS['jldate'];
+  echo "\n<hr/>\n";
+  stoic_hours_link_win_same(array('jldate' => $jldate,'view' => 'index'));
+  echo "Return to This Day's Index";
+  stoic_hours_link_end();
+  echo "\n<hr/>\n";
+}
+
+function stoic_navigator_top ( )
+{
+  return_to_index_view();
+}
+
+function stoic_navigator_bottom ( )
+{
+  return_to_index_view();
 }
 
 

@@ -12,14 +12,59 @@ $jl_tomorr = (int)($jldate + 1.2);
 
 <h1>Stoic Hours for <?php echo big_date_form($jldate); ?></h1>
 
+<p>
+What is here is not much --- but remember that it is a work-in-progress, and what
+it has to offer will increase.
+</p>
+
 <ul>
 
 <li>
 <?php
-stoic_hours_link_win_new(array('jldate' => $jldate,'view' => 'lauds'));
+stoic_hours_link_win_same(array('jldate' => $jldate,'view' => 'lauds'));
 ?>
 <b>Lauds</b> - Major Hour
 <?php stoic_hours_link_end(); ?> (If you immerse in only one hour - it is recommended that it be this one.)
+</li>
+
+<li>
+<?php
+stoic_hours_link_win_same(array('jldate' => $jldate,'view' => 'terce'));
+?>
+<b>Terce</b>
+<?php stoic_hours_link_end(); ?>
+</li>
+
+<li>
+<?php
+stoic_hours_link_win_same(array('jldate' => $jldate,'view' => 'sext'));
+?>
+<b>Sext</b> - Major Hour
+<?php stoic_hours_link_end(); ?>
+</li>
+
+<li>
+<?php
+stoic_hours_link_win_same(array('jldate' => $jldate,'view' => 'none'));
+?>
+<b>None</b>
+<?php stoic_hours_link_end(); ?>
+</li>
+
+<li>
+<?php
+stoic_hours_link_win_same(array('jldate' => $jldate,'view' => 'vespers'));
+?>
+<b>Vespers</b> - Major Hour
+<?php stoic_hours_link_end(); ?>
+</li>
+
+<li>
+<?php
+stoic_hours_link_win_same(array('jldate' => $jldate,'view' => 'compline'));
+?>
+<b>Compline</b>
+<?php stoic_hours_link_end(); ?>
 </li>
 
 </ul>
