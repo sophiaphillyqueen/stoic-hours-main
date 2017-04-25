@@ -220,6 +220,29 @@ function the_stoic_in_xml ( $xmlsrc )
 }
 
 
+function stoic_hour_page_start ( $hourname )
+{
+  $jldate = $GLOBALS['jldate'];
+  ?>
+<html><head>
+<style>
+<?php require(realpath(__DIR__ . "/style-main.php")); ?>
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo 'Stoic ' . $hourname . ': ' . big_date_form($jldate); ?></title>
+</head><body>
+<h1><?php echo 'Stoic ' . $hourname . ' for ' . big_date_form($jldate); ?></h1>
+  <?php
+  stoic_navigator_top();
+}
+
+function stoic_hour_page_stop ( )
+{
+  stoic_navigator_bottom();
+  echo "\n</body>\n</html>\n";
+}
+
+
 function stoic_hours_link_win_same ( $theqry )
 {
   echo('<a href = "' . pass_to_page($theqry) . '">');

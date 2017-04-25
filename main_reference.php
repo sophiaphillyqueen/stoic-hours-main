@@ -7,7 +7,9 @@ $jld_prima = (int)(($jldanchor - $max_backward) + 0.2);
 $jld_termi = (int)(($jldanchor + $max_forward) + 0.2);
 
 // Find Julian day-count - defaulting to today.
-$jldate = obtain_of_qry('jldate',$jldanchor);
+$jldate = obtain_of_qry('jldate','x');
+$rawjldate = $jldate;
+if ( strcmp($rawjldate,'x') == 0 ) { $jldate = $jldanchor; }
 
 // START TO MAKE SURE IT'S NOT OUT OF BOUNDS
 

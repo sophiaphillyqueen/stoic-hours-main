@@ -1,6 +1,8 @@
 <html><head>
 <?php styling_info('index'); ?>
-<title>Stoic Hours: <?php echo big_date_form($jldate); ?></title>
+<title>Stoic Hours<?php
+if ( strcmp($rawjldate,'x') != 0 ) {
+?>: <?php echo big_date_form($jldate); ?><?php } ?></title>
 </head><body>
 
 <?php
