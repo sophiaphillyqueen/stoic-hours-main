@@ -98,27 +98,39 @@ function the_stoic__xml_count_a ( $therange, $thetarg )
   return( count($therange->$thetarg) );
 }
 
-function stoic_hour_cycle_res_simple ( $resfile, $year, $month, $dayom )
+function stoic_hour_cycle_res ( $resfile, $year, $month, $dayom, $extra )
 {
+  // Why do I have it return 'true' when it fails and 'false' when it
+  // succeeds? Because, the only thing that I foresee the calling program
+  // doing with this return value is determining whether to call an
+  // alternative.
+  
   $cyclejulor = gregoriantojd($month,$dayom,$year);
   $jldate = $GLOBALS['jldate'];
   
   // No future cycles please
-  if ( $cyclejulor > $jldate ) { return false; }
+  if ( $cyclejulor > ( $jldate + 0.5 ) ) { return true; }
   
   $worked = 10;
   $xmlrs = simplexml_load_file($resfile) or $worked = 0;
-  if ( $worked < 5 ) { return false; }
+  if ( $worked < 5 ) { return true; }
   
+  // The default cycle duration is none other than the
+  // length of the resource.
   $ressiz = count($xmlrs->item);
-  if ( $ressiz < 0.5 ) { return false; }
+  if ( $ressiz < 0.5 ) { return true; }
+  $cyclesize = $ressiz;
+  
+  // The default cycle duration can be over-ridden by the 'fixcycle' option.
+  if ( array_key_exists('fixcycle',$extra) ) { $cyclesize = $extra['fixcycle']; }
   
   $jlelaps = (int)(($jldate - $cyclejulor) + 0.2);
-  $jlcyst = ( $jlelaps % $ressiz );
+  $jlcyst = ( $jlelaps % $cyclesize );
+  if ( $jlcyst > ( $ressiz - 0.5 ) ) { return true; }
   
-  if ( the_stoic__xml_lacks_a($xmlrs,'title') ) { return false; }
-  if ( the_stoic__xml_lacks_a($xmlrs->item[$jlcyst],'title') ) { return false; }
-  if ( the_stoic__xml_lacks_a($xmlrs->item[$jlcyst],'content') ) { return false; }
+  if ( the_stoic__xml_lacks_a($xmlrs,'title') ) { return true; }
+  if ( the_stoic__xml_lacks_a($xmlrs->item[$jlcyst],'title') ) { return true; }
+  if ( the_stoic__xml_lacks_a($xmlrs->item[$jlcyst],'content') ) { return true; }
   
   echo "<h3>";
   echo the_stoic_in_xml($xmlrs->title);
@@ -145,9 +157,7 @@ function stoic_hour_cycle_res_simple ( $resfile, $year, $month, $dayom )
   }
   
   
-  
-  
-  return true;
+  return false;
 }
 
 

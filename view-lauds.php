@@ -10,7 +10,8 @@
 <hr/>
 
 <?php
-stoic_hour_cycle_res_simple(realpath(__DIR__ . '/enchiridion.xml'),2017,4,20);
+$yetgo = true;
+if ( $yetgo ) { $yegto = stoic_hour_cycle_res(realpath(__DIR__ . '/enchiridion.xml'),2017,4,20,{}); }
 ?>
 
 <hr/>
