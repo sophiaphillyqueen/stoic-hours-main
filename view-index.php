@@ -12,10 +12,15 @@ $jl_tomorr = (int)($jldate + 1.2);
 
 <h1>Stoic Hours for <?php echo big_date_form($jldate); ?></h1>
 
-<p>
+<div class = "introtext">
 What is here is not much --- but remember that it is a work-in-progress, and what
 it has to offer will increase.
-</p>
+</div>
+
+<div class = "introtext">
+To follow the development of the Open Source project behind these Hours
+<a href = "https://github.com/stoic-hours/stoic-hours-main" target = "_blank">visit the GitHub project</a>.
+</div>
 
 <ul>
 

@@ -1,3 +1,4 @@
+<style>
 
 div.credit_section {
 	margin-left: 20px;
@@ -27,3 +28,5 @@ div.instruction_text {
 	margin-bottom: 8px;
 	color: #ff0000;
 }
+
+</style>

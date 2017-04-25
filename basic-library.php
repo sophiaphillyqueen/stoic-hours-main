@@ -14,9 +14,12 @@ function styling_info ( $styleid )
 {
   echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">' . "\n";
   
-  echo "<style>\n";
+  // The open-close tags of the STYLE element are now to be located WITHIN the
+  // style-PHP page --- so that text-editors will recognize the CSS content
+  // as CSS code.
+  echo "\n";
   require(realpath(__DIR__ . '/style-' . $styleid . '.php'));
-  echo "\n</style>\n";
+  echo "\n";
 }
 
 

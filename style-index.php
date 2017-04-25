@@ -1,5 +1,6 @@
+<style>
 
-div.credit_section {
+div.hour_section {
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-top: 10px;
@@ -10,3 +11,11 @@ div.credit_section {
 	border-radius: 10px;
 }
 
+div.introtext {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+</style>
