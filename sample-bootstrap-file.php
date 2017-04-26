@@ -39,10 +39,11 @@ $max_forward = 6;   // How many days forward you allow people to view the Hours.
 // This next array is an associative array to locate on your server
 // cycle-resource XML files that are, for one reason or another, not
 // included in the actual distribution of the Stoic Hours program.
-// Currently, no such files are required, so the array is still empty
-// (yet must be here nonetheless) -- but check back here in the future
-// to see if any contents are added to this associative array.
 $external_cycle_xml = array(
+
+  // Unfortunately, the poetry file is not currently contained within
+  // the distribution. Eventually, it may be made available separately.
+  'poetry-main-cycle' => '../../../hidden/res/stoic-poetry/main-cycle.xml',
 );
 
 

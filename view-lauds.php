@@ -12,8 +12,7 @@ if ( $yetgo ) { $yegto = stoic_hour_cycle_res(realpath(__DIR__ . '/eoc-instruct.
 
 
 $yetgo = true;
-if ( $yetgo ) { $yegto = stoic_hour_cycle_xres('poetry-main-cycle',2017,4,30,array('fixcycle'=>5)); }
-if ( $yetgo ) { $yegto = stoic_hour_cycle_xres('poetry-main-cycle',2017,4,20,array('fixcycle'=>2)); }
+if ( $yetgo ) { $yegto = stoic_hour_cycle_xres('poetry-main-cycle',2017,4,20,array('fixcycle'=>3)); }
 
 
 
