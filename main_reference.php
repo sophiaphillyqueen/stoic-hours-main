@@ -27,7 +27,7 @@ if ( $jldate > ( $jld_termi + 2.5 ) )
 
 // Get ID code of the page-within-day
 $pgvidc = obtain_of_mcqry('view','index',array
-  ('lauds','terce','sext','none','vespers','compline')
+  ('lauds','terce','sext','none','vespers','compline',  'check')
 );
 
 // Any additional preparations before we go to the page-specific view:

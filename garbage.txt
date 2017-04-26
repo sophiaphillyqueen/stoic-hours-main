@@ -1,3 +1,4 @@
 Change '—' to ' -- '
 Change '“' to '"'
 Change '”' to '"'
+Change '’' to "'"

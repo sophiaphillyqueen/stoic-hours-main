@@ -101,6 +101,14 @@ function the_stoic__xml_count_a ( $therange, $thetarg )
   return( count($therange->$thetarg) );
 }
 
+function stoic_hour_cycle_xres ( $resname, $year, $month, $dayom, $extra )
+{
+  $external_cycle_xml = $GLOBALS['external_cycle_xml'];
+  if ( !array_key_exists($resname,$external_cycle_xml) ) { return true; }
+  $resfile = $external_cycle_xml[$resname];
+  return stoic_hour_cycle_res($resfile,$year,$month,$dayom,$extra);
+}
+
 function stoic_hour_cycle_res ( $resfile, $year, $month, $dayom, $extra )
 {
   // Why do I have it return 'true' when it fails and 'false' when it
@@ -130,6 +138,12 @@ function stoic_hour_cycle_res ( $resfile, $year, $month, $dayom, $extra )
   $jlelaps = (int)(($jldate - $cyclejulor) + 0.2);
   $jlcyst = ( $jlelaps % $cyclesize );
   if ( array_key_exists('chosen-in-ray',$extra) ) { $jlcyst = $extra['chosen-in-ray']; }
+  if ( array_key_exists('chosen-back-ray',$extra) )
+  {
+    $jlcyst = (int)(($cyclesize - $extra['chosen-back-ray']) + 0.2);
+    if ( $jlcyst < 0.5 ) { return true; }
+    $jlcyst = (int)($jlcyst - 0.8);
+  }
   if ( $jlcyst > ( $ressiz - 0.5 ) ) { return true; }
   
   if ( the_stoic__xml_lacks_a($xmlrs,'title') ) { return true; }
@@ -166,6 +180,11 @@ function stoic_hour_cycle_res ( $resfile, $year, $month, $dayom, $extra )
     {
       echo "\n" . the_stoic_in_xml($xmlitem) . "\n";
     }
+    
+    if ( strcmp($xmltyp,'stn') == 0 )
+    {
+      stoic_hour_poem_stansa($xmlitem);
+    }
   }
   
   
@@ -176,10 +195,47 @@ function stoic_hour_cycle_res ( $resfile, $year, $month, $dayom, $extra )
     echo "</div>\n";
   }
   
+  if ( the_stoic__xml_has_a($xmlrs->item[$jlcyst],'credit') )
+  {
+    echo '<div class = "credit_section">';
+    echo the_stoic_in_xml($xmlrs->item[$jlcyst]->credit);
+    echo "</div>\n";
+  }
+  
   ?></div><?php
   
   
   return false;
+}
+
+function stoic_hour_poem_stansa ( $stansres )
+{
+  $ind_default = 0;
+  $line_types = array(
+    'poem_line_00_ind',
+    'poem_line_01_ind',
+    'poem_line_02_ind',
+    'poem_line_03_ind',
+    'poem_line_04_ind',
+    'poem_line_05_ind',
+  );
+  echo "<div class = \"poem_stansa\">\n";
+  
+  foreach ( $stansres->children() as $substn )
+  {
+    $substyp = $substn->getName();
+    if ( strcmp($substyp,'l') == 0 )
+    {
+      $indlev = (int)($substn['ind']);
+      echo "<div class = \"" . $line_types[$indlev] . "\">";
+      echo the_stoic_in_xml($substn);
+      echo "</div>\n";
+    }
+  }
+  
+  
+  
+  echo "</div>\n";
 }
 
 
@@ -226,7 +282,8 @@ function stoic_hour_page_start ( $hourname )
   ?>
 <html><head>
 <?php require(realpath(__DIR__ . "/style-main.php")); ?>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo 'Stoic ' . $hourname . ': ' . big_date_form($jldate); ?></title>
 </head><body>
 <h1><?php echo 'Stoic ' . $hourname . ' for ' . big_date_form($jldate); ?></h1>

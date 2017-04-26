@@ -29,4 +29,19 @@ div.instruction_text {
 	color: #ff0000;
 }
 
+div.poem_stansa {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+div.poem_line_00_ind {
+	text-indent: -120px;
+	padding-left: 120px;
+}
+
+div.poem_line_01_ind {
+	text-indent: -110px;
+	padding-left: 120px;
+}
+
 </style>
