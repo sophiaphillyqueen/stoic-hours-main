@@ -3,7 +3,7 @@
 
 <?php
 $yetgo = true;
-if ( $yetgo ) { $yegto = stoic_hour_cycle_res(realpath(__DIR__ . '/enchiridion.xml'),2017,5,6,array()); }
+if ( $yetgo ) { $yegto = stoic_hour_cycle_res(realpath(__DIR__ . '/enchiridion.xml'),2017,5,8,array()); }
 if ( $yetgo ) { $yegto = stoic_hour_cycle_res(realpath(__DIR__ . '/enchiridion.xml'),2017,4,15,array('fixcycle'=>18)); }
 ?>
 

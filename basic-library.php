@@ -225,9 +225,7 @@ function stoic_hour_page_start ( $hourname )
   $jldate = $GLOBALS['jldate'];
   ?>
 <html><head>
-<style>
 <?php require(realpath(__DIR__ . "/style-main.php")); ?>
-</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?php echo 'Stoic ' . $hourname . ': ' . big_date_form($jldate); ?></title>
 </head><body>
