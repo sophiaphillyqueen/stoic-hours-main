@@ -47,6 +47,15 @@ $external_cycle_xml = array(
 );
 
 
+// This associative arrays is the names of cookies used in the
+// app. Thse values are customizable so as to prevent potential
+// conflicts.
+$stoic_cookie_names = array (
+  'style-main' => 'stoic_hour_style_main',
+  'style-index' => 'stoic_hour_style_index',
+);
+
+
 // This next array is an associative array defining default values of
 // various form-fields assuming that they are not provided. This array
 // needs to be here - but unless you are conducting some weird tests,
