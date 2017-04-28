@@ -44,4 +44,25 @@ div.poem_line_01_ind {
 	padding-left: 120px;
 }
 
+div.big_section_title {
+	text-align: center;
+	font-weight: bold;
+	font-size: 220%;
+}
+
+div.item_title_level_00 {
+	text-align: center;
+	font-size: 220%;
+}
+
+div.item_title_level_01 {
+	text-align: center;
+	font-size: 200%;
+}
+
+div.item_title_level_02 {
+	text-align: center;
+	font-size: 180%;
+}
+
 </style>
