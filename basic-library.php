@@ -111,36 +111,6 @@ function stoic_hour_cycle_xres ( $resname, $year, $month, $dayom, $extra )
   return stoic_hour_cycle_res($resfile,$year,$month,$dayom,$extra);
 }
 
-function stoic_hour_poem_stansa ( $stansres )
-{
-  $ind_default = 0;
-  $line_types = array(
-    'poem_line_00_ind',
-    'poem_line_01_ind',
-    'poem_line_02_ind',
-    'poem_line_03_ind',
-    'poem_line_04_ind',
-    'poem_line_05_ind',
-  );
-  echo "<div class = \"poem_stansa\">\n";
-  
-  foreach ( $stansres->children() as $substn )
-  {
-    $substyp = $substn->getName();
-    if ( strcmp($substyp,'l') == 0 )
-    {
-      $indlev = (int)($substn['ind']);
-      echo "<div class = \"" . $line_types[$indlev] . "\">";
-      echo the_stoic_in_xml($substn);
-      echo "</div>\n";
-    }
-  }
-  
-  
-  
-  echo "</div>\n";
-}
-
 
 function return_to_index_view ( )
 {

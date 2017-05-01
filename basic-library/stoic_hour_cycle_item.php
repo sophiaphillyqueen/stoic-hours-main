@@ -1,5 +1,7 @@
 <?php
 
+require_once(realpath(__DIR__ . "/stoic_hour_poem_stansa.php"));
+
 function stoic_hour_cycle_item ( $jelico, $thelevel )
 {
   $title_levels = array(

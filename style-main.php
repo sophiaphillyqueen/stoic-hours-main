@@ -44,6 +44,11 @@ div.poem_line_01_ind {
 	padding-left: 120px;
 }
 
+div.poem_line_02_ind {
+	text-indent: -100px;
+	padding-left: 120px;
+}
+
 div.big_section_title {
 	text-align: center;
 	font-weight: bold;
